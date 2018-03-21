@@ -12,16 +12,19 @@ random.seed(datetime.datetime.now())
 def get_links(article_url):
 	try:
 		html = urlopen("http://en.wikipedia.org" + article_url)
-	except URLError:#检查URLError，预防程序崩溃
+	#检查URLError，预防程序崩溃
+	except URLError:
 		print('URL is wrong!')
 	try:	
 		bs_obj = bs(html,'html5lib')
 		#提取links
 		links = bs_obj.find("div", {"id":"bodyContent"}).findAll("a",
 			href=re.compile("^(/wiki/)((?!:).)*$"))
-	except AttributeError:#检查AttributeError,当bs_obj返回None时，bs_obj没有属性
+	#检查AttributeError,当bs_obj返回None时，bs_obj没有属性
+	except AttributeError:
 		return None
-	except UnboundLocalError:#URLError出现时，html未定义，出现变量命名空间错误
+	#URLError出现时，html未定义，出现变量命名空间错误
+	except UnboundLocalError:
 		return None	
 	return links
 links_list = get_links("/wiki/Kevin_Bacon")

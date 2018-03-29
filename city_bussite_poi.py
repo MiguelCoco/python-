@@ -27,7 +27,7 @@ for loc in loc_fin:
 		'bounds':loc,
 		'output':'json',
 		'page_size':'20',
-		'ak':'G4rOuo6mHVvNtSU7PpRLTsWdz51oT4ho'
+		'ak':'G4rOuo***************51oT4ho'
 		}
 	http_page = requests.get(url,params)
 	result = http_page.json()
